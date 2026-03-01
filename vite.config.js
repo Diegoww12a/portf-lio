@@ -1,9 +1,9 @@
-import { defineConfig } from 'vite'
-
-export default defineConfig({
-  base: '/portf-lio/',
+export default defineConfig(({ mode }) => ({
+  base: mode === 'github'
+    ? '/portf-lio/'
+    : '/',
   server: {
     port: 5173,
     open: true
   }
-})
+}))
