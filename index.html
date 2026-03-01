@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Diego Neves — Front-end Developer</title>
+<script src="https://cdn.tailwindcss.com"></script> 
+<link rel="stylesheet" href="src/style.css">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;700;800&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        fontFamily: {
+          syne: ['Syne', 'sans-serif'],
+          mono: ['JetBrains Mono', 'monospace'],
+        },
+        colors: {
+          bg: '#0c0c0e',
+          surface: '#111114',
+          ink: '#eeeef0',
+          mid: '#666672',
+          line: '#1e1e24',
+          accent: '#6366f1',
+          accent2: '#a5b4fc',
+          tag: '#16161a',
+        }
+      }
+    }
+  }
+</script>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background-color: #0c0c0e; }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .delay-1 { transition-delay: 0.1s; }
+  .delay-2 { transition-delay: 0.2s; }
+  .delay-3 { transition-delay: 0.3s; }
+
+  .fade-0 { animation: fadeUp 0.6s 0s ease forwards; opacity: 0; }
+  .fade-1 { animation: fadeUp 0.6s 0.15s ease forwards; opacity: 0; }
+  .fade-2 { animation: fadeUp 0.6s 0.3s ease forwards; opacity: 0; }
+  .fade-3 { animation: fadeUp 0.6s 0.45s ease forwards; opacity: 0; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .underline-link { position: relative; text-decoration: none; }
+  .underline-link::after {
+    content: '';
+    position: absolute;
+    left: 0; bottom: -1px;
+    width: 0; height: 1px;
+    background: #6366f1;
+    transition: width 0.3s ease;
+  }
+  .underline-link:hover::after { width: 100%; }
+
+  .project-row { transition: background 0.25s ease; }
+  .project-row:hover { background: #111114; }
+  .project-row:hover .arrow { opacity: 1; transform: translateX(0); }
+  .arrow {
+    opacity: 0;
+    transform: translateX(-8px);
+    transition: opacity 0.25s ease, transform 0.25s ease;
+  }
+
+  /* Glow hero bg */
+  .hero-glow {
+    position: absolute;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(99,102,241,0.12) 0%, transparent 70%);
+    top: 50%; left: 60%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+  }
+
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: #0c0c0e; }
+  ::-webkit-scrollbar-thumb { background: #1e1e24; border-radius: 2px; }
+</style>
+</head>
+<body class="font-mono text-ink antialiased">
+
+<!-- ── NAV ── -->
+<header class="fixed top-0 inset-x-0 z-50 bg-bg/80 backdrop-blur-md border-b border-line">
+  <div class="max-w-5xl mx-auto px-6 h-14 flex items-center justify-between">
+    <span class="font-syne font-bold tracking-tight text-ink">
+      Diego Neves<span class="text-accent">.</span>
+    </span>
+    <nav class="flex gap-8 text-xs text-mid tracking-widest uppercase">
+      <a href="#sobre" class="underline-link hover:text-ink transition-colors">Sobre</a>
+      <a href="#projetos" class="underline-link hover:text-ink transition-colors">Projetos</a>
+      <a href="#contato" class="underline-link hover:text-ink transition-colors">Contato</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ── HERO ── -->
+<section class="min-h-screen flex items-center relative overflow-hidden bg-bg">
+  <div class="hero-glow"></div>
+  <div class="max-w-5xl mx-auto px-6 py-32 w-full relative z-10">
+    <div class="grid grid-cols-1 lg:grid-cols-5 gap-16 items-center">
+
+      <div class="lg:col-span-3">
+        <p class="fade-0 text-xs tracking-widest uppercase text-accent flex items-center gap-2.5 mb-6">
+          <span class="w-1.5 h-1.5 rounded-full bg-accent animate-pulse"></span>
+          Disponível para projetos
+        </p>
+        <h1 class="fade-1 font-syne font-extrabold text-4xl lg:text-[4.5rem] leading-[1.04] tracking-tight mb-6 text-ink">
+          Front-end<br>Developer
+        </h1>
+        <p class="fade-2 text-mid text-sm leading-relaxed max-w-md mb-10">
+          18 anos, 10 projetos freelance entregues e aprendizado rápido. Crio interfaces modernas e responsivas com HTML, CSS, Tailwind e JavaScript.
+        </p>
+        <div class="fade-3 flex gap-3 flex-wrap">
+          <a href="#projetos"
+             class="bg-accent text-white text-xs tracking-widest uppercase px-7 py-3.5 hover:bg-indigo-500 transition-colors duration-300">
+            Ver projetos
+          </a>
+          <a href="#contato"
+             class="border border-line text-ink text-xs tracking-widest uppercase px-7 py-3.5 hover:border-accent transition-colors duration-300">
+            Contato
+          </a>
+        </div>
+      </div>
+
+      <!-- Stats -->
+      <div class="lg:col-span-2 fade-2">
+        <div class="grid grid-cols-2 gap-px bg-line border border-line">
+          <div class="bg-surface p-7">
+            <p class="font-syne font-extrabold text-4xl text-ink">10+</p>
+            <p class="text-xs text-mid mt-1.5 uppercase tracking-wider leading-snug">Projetos freelance</p>
+          </div>
+          <div class="bg-surface p-7">
+            <p class="font-syne font-extrabold text-4xl text-ink">6+</p>
+            <p class="text-xs text-mid mt-1.5 uppercase tracking-wider leading-snug">No portfólio</p>
+          </div>
+          <div class="bg-surface p-7">
+            <p class="font-syne font-extrabold text-4xl text-ink">18</p>
+            <p class="text-xs text-mid mt-1.5 uppercase tracking-wider leading-snug">Anos de idade</p>
+          </div>
+          <div class="bg-surface p-7">
+            <p class="font-syne font-extrabold text-4xl text-accent">∞</p>
+            <p class="text-xs text-mid mt-1.5 uppercase tracking-wider leading-snug">Vontade de aprender</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── SOBRE ── -->
+<section id="sobre" class="border-t border-line bg-bg">
+  <div class="max-w-5xl mx-auto px-6 py-24">
+    <div class="grid lg:grid-cols-3 gap-16">
+
+      <div class="reveal">
+        <p class="text-xs text-accent tracking-widest uppercase mb-3">01 — Sobre</p>
+        <h2 class="font-syne font-bold text-3xl leading-tight text-ink">Quem sou</h2>
+      </div>
+
+      <div class="lg:col-span-2 reveal delay-1 space-y-10">
+        <div class="space-y-4 text-sm text-mid leading-relaxed">
+          <p>
+            Me chamo Diego Jesus das Neves, tenho 18 anos e sou desenvolvedor front-end freelance. Comecei cedo, aprendo rápido e já entreguei mais de 10 projetos para clientes reais — de landing pages a lojas e sistemas com múltiplas páginas.
+          </p>
+          <p>
+            Cada projeto é uma oportunidade de evoluir e entregar algo melhor do que o anterior. Tenho inglês intermediário e estou sempre buscando novos desafios.
+          </p>
+        </div>
+
+        <div>
+          <p class="text-xs text-mid uppercase tracking-widest mb-4">Stack & habilidades</p>
+          <div id="skill-tags" class="flex flex-wrap gap-2"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PROJETOS ── -->
+<section id="projetos" class="border-t border-line bg-surface">
+  <div class="max-w-5xl mx-auto px-6 py-24">
+
+    <div class="flex justify-between items-end mb-12 reveal">
+      <div>
+        <p class="text-xs text-accent tracking-widest uppercase mb-3">02 — Trabalhos</p>
+        <h2 class="font-syne font-bold text-3xl text-ink">Projetos selecionados</h2>
+      </div>
+    </div>
+
+    <div class="divide-y divide-line border-y border-line">
+
+      <a target="_blank" href="https://hotzperformance.netlify.app/" class="project-row    reveal cursor-pointer group px-0 py-7 flex flex-col lg:flex-row lg:items-center gap-5">
+        <span class="font-syne font-bold text-3xl text-accent w-14 flex-shrink-0">01</span>
+        <div class="flex-1 min-w-0">
+          <div class="flex gap-3 items-center mb-1.5">
+            <span class="text-xs text-mid uppercase tracking-wider">Landing Page</span>
+            <span class="text-mid text-xs">·</span>
+            <span class="text-xs text-mid">Freelance</span>
+          </div>
+          <h3 class="font-syne font-bold text-xl group-hover:text-accent transition-colors mb-1 text-ink">Hotz Performance</h3>
+          <p class="text-sm text-mid leading-relaxed">Landing page de serviço com foco em conversão. Layout moderno, responsivo e rápido.</p>
+        </div>
+        <div class="flex gap-2 flex-wrap lg:w-56 flex-shrink-0">
+          <span class="text-xs px-2.5 py-1 bg-tag border border-line text-mid">HTML5</span>
+          <span class="text-xs px-2.5 py-1 bg-tag border border-line text-mid">CSS3</span>
+          <span class="text-xs px-2.5 py-1 bg-tag border border-line text-mid">JS</span>
+          <span class="text-xs px-2.5 py-1 bg-tag border border-line text-mid">Tailwind</span>
+        </div>
+        <span class="arrow text-accent text-xl flex-shrink-0">→</span>
+      </a>
+
+      <a target="_blank" href="https://ecstasyfivemfake.netlify.app/" class="project-row reveal delay-1 cursor-pointer group px-0 py-7 flex flex-col lg:flex-row lg:items-center gap-5">
+        <span class="font-syne font-bold text-3xl text-ink w-14 flex-shrink-0">02</span>
+        <div class="flex-1 min-w-0">
+          <div class="flex gap-3 items-center mb-1.5">
+            <span class="text-xs text-mid uppercase tracking-wider">Vitrine / Loja</span>
+            <span class="text-mid text-xs">·</span>
+            <span class="text-xs text-mid">Freelance</span>
+          </div>
+          <h3 class="font-syne font-bold text-xl group-hover:text-accent transition-colors mb-1 text-ink">Ecstasy FiveM</h3>
+          <p class="text-sm text-mid leading-relaxed">Site de vitrine para apresentação e venda de produtos/serviços. Design atrativo e bem estruturado.</p>
+        </div>
+        <div class="flex gap-2 flex-wrap lg:w-56 flex-shrink-0">
+          <span class="text-xs px-2.5 py-1 bg-tag border border-line text-mid">HTML5</span>
+          <span class="text-xs px-2.5 py-1 bg-tag border border-line text-mid">CSS3</span>
+          <span class="text-xs px-2.5 py-1 bg-tag border border-line text-mid">JS</span>
+          <span class="text-xs px-2.5 py-1 bg-tag border border-line text-mid">Tailwind</span>
+        </div>
+        <span class="arrow text-accent text-xl flex-shrink-0">→</span>
+      </a>
+
+      <a target="_blank" href="https://lojagoatskins.netlify.app/" class="project-row reveal delay-2 cursor-pointer group px-0 py-7 flex flex-col lg:flex-row lg:items-center gap-5">
+        <span class="font-syne font-bold text-3xl text-mid w-14 flex-shrink-0">03</span>
+        <div class="flex-1 min-w-0">
+          <div class="flex gap-3 items-center mb-1.5">
+            <span class="text-xs text-mid uppercase tracking-wider">E-commerce</span>
+            <span class="text-mid text-xs">·</span>
+            <span class="text-xs text-mid">Freelance</span>
+          </div>
+          <h3 class="font-syne font-bold text-xl group-hover:text-accent transition-colors mb-1 text-ink">Loja Goat Skins</h3>
+          <p class="text-sm text-mid leading-relaxed">Loja online de skins do jogo Goat com catálogo de produtos e visual temático.</p>
+        </div>
+        <div class="flex gap-2 flex-wrap lg:w-56 flex-shrink-0">
+          <span class="text-xs px-2.5 py-1 bg-tag border border-line text-mid">HTML5</span>
+          <span class="text-xs px-2.5 py-1 bg-tag border border-line text-mid">CSS3</span>
+          <span class="text-xs px-2.5 py-1 bg-tag border border-line text-mid">JS</span>
+          <span class="text-xs px-2.5 py-1 bg-tag border border-line text-mid">Tailwind</span>
+        </div>
+        <span class="arrow text-accent text-xl flex-shrink-0">→</span>
+      </a>
+
+      <a target="_blank" href="https://goatbattleroyaleclone.netlify.app/" class="project-row reveal delay-3 cursor-pointer group px-0 py-7 flex flex-col lg:flex-row lg:items-center gap-5">
+        <span class="font-syne font-bold text-3xl text-mid w-14 flex-shrink-0">04</span>
+        <div class="flex-1 min-w-0">
+          <div class="flex gap-3 items-center mb-1.5">
+            <span class="text-xs text-mid uppercase tracking-wider">Landing Page</span>
+            <span class="text-mid text-xs">·</span>
+            <span class="text-xs text-mid">Freelance</span>
+          </div>
+          <h3 class="font-syne font-bold text-xl group-hover:text-accent transition-colors mb-1 text-ink">Goat Battle Royale Clone</h3>
+          <p class="text-sm text-mid leading-relaxed">Landing page simples e objetiva para apresentação de servidor/produto de battle royale.</p>
+        </div>
+        <div class="flex gap-2 flex-wrap lg:w-56 flex-shrink-0">
+          <span class="text-xs px-2.5 py-1 bg-tag border border-line text-mid">HTML5</span>
+          <span class="text-xs px-2.5 py-1 bg-tag border border-line text-mid">CSS3</span>
+          <span class="text-xs px-2.5 py-1 bg-tag border border-line text-mid">JS</span>
+          <span class="text-xs px-2.5 py-1 bg-tag border border-line text-mid">Tailwind</span>
+        </div>
+        <span class="arrow text-accent text-xl flex-shrink-0">→</span>
+      </a>
+
+      <a target="_blank" href="https://nxfoxcpx.netlify.app/" class="project-row reveal cursor-pointer group px-0 py-7 flex flex-col lg:flex-row lg:items-center gap-5">
+        <span class="font-syne font-bold text-3xl text-mid w-14 flex-shrink-0">05</span>
+        <div class="flex-1 min-w-0">
+          <div class="flex gap-3 items-center mb-1.5">
+            <span class="text-xs text-mid uppercase tracking-wider">Site Multi-página</span>
+            <span class="text-mid text-xs">·</span>
+            <span class="text-xs text-mid">Freelance</span>
+          </div>
+          <h3 class="font-syne font-bold text-xl group-hover:text-accent transition-colors mb-1 text-ink">NXFox CPX</h3>
+          <p class="text-sm text-mid leading-relaxed">Site de venda de cheat com 4 páginas completas, incluindo dashboard e área de produtos.</p>
+        </div>
+        <div class="flex gap-2 flex-wrap lg:w-56 flex-shrink-0">
+          <span class="text-xs px-2.5 py-1 bg-tag border border-line text-mid">HTML5</span>
+          <span class="text-xs px-2.5 py-1 bg-tag border border-line text-mid">CSS3</span>
+          <span class="text-xs px-2.5 py-1 bg-tag border border-line text-mid">JS</span>
+          <span class="text-xs px-2.5 py-1 bg-tag border border-line text-mid">Tailwind</span>
+        </div>
+        <span class="arrow text-accent text-xl flex-shrink-0">→</span>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── CONTATO ── -->
+<section id="contato" class="border-t border-line bg-bg">
+  <div class="max-w-5xl mx-auto px-6 py-24">
+    <div class="grid lg:grid-cols-3 gap-16">
+
+      <div class="reveal">
+        <p class="text-xs text-accent tracking-widest uppercase mb-3">03 — Contato</p>
+        <h2 class="font-syne font-bold text-3xl leading-tight text-ink">Bora trabalhar juntos?</h2>
+      </div>
+
+      <div class="lg:col-span-2 reveal delay-1 space-y-4">
+        <p class="text-sm text-mid leading-relaxed mb-8">
+          Estou sempre aberto a novos projetos freelance. Se precisa de uma landing page, loja ou site do zero — me chama!
+        </p>
+
+        <a href="mailto:diegoneves2021123@gmail.com"
+           class="flex items-center justify-between group border border-line bg-surface p-5 hover:border-accent transition-colors">
+          <div>
+            <p class="text-xs text-mid uppercase tracking-widest mb-1">E-mail</p>
+            <p class="font-syne font-bold text-lg text-ink">diegoneves2021123@gmail.com</p>
+          </div>
+          <span class="text-accent text-xl opacity-0 group-hover:opacity-100 transition-opacity">→</span>
+        </a>
+
+        <div class="grid grid-cols-2 gap-4">
+          <a href="https://linkedin.com/in/diego-neves" target="_blank"
+             class="flex items-center justify-between group border border-line bg-surface p-5 hover:border-accent transition-colors">
+            <div>
+              <p class="text-xs text-mid uppercase tracking-widest mb-1">LinkedIn</p>
+              <p class="font-syne font-bold text-ink">Diego Neves</p>
+            </div>
+            <span class="text-accent opacity-0 group-hover:opacity-100 transition-opacity">↗</span>
+          </a>
+          <a href="https://github.com/Diegoww12a" target="_blank"
+             class="flex items-center justify-between group border border-line bg-surface p-5 hover:border-accent transition-colors">
+            <div>
+              <p class="text-xs text-mid uppercase tracking-widest mb-1">GitHub</p>
+              <p class="font-syne font-bold text-ink">@Diegoww12a</p>
+            </div>
+            <span class="text-accent opacity-0 group-hover:opacity-100 transition-opacity">↗</span>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer class="border-t border-line bg-bg">
+  <div class="max-w-5xl mx-auto px-6 py-5 flex flex-col sm:flex-row justify-between items-center gap-2">
+    <span class="font-syne font-bold text-sm text-ink">Diego Neves<span class="text-accent">.</span></span>
+    <span class="text-xs text-mid">© 2024 — Front-end Developer</span>
+  </div>
+</footer>
+
+<script>
+  const skills = ['HTML5','CSS3','JavaScript','Tailwind CSS','React','Inglês Intermediário','UI Design','Responsivo','Git'];
+  document.getElementById('skill-tags').innerHTML = skills.map(s =>
+    `<span class="text-xs px-3 py-1.5 bg-tag border border-line text-mid hover:border-accent hover:text-accent2 transition-colors cursor-default">${s}</span>`
+  ).join('');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) entry.target.classList.add('visible');
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); }
+    });
+  });
+</script>
+</body>
+</html>
