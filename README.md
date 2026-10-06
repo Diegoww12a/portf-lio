@@ -54,6 +54,6 @@ npm run deploy       # build:github + gh-pages -d dist
 
 ## Autor
 
-**Diego Neves** — Desenvolvedor Front-end
+**Diego Neves** — Desenvolvedor Full Stack
 
 React · Vite · Tailwind CSS
